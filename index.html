@@ -11,26 +11,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ADS Theater</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="./hamburger.js"></script>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
 <body>
-  <header>
-    <div class="header container">
-      <h1>ADS Theater</h1>
-      <nav>
+  <header class="header container">
+      <nav class="nav">
+        <h1>ADS Theater</h1>
+        <button class="hamburger"></button>
         <ul class="navbar">
-          <a href="#">
-            <li>Home</li>
-          </a>
-          <a href="./about-us.html">
-            <li>Sobre Nós</li>
-          </a>
-          <a href="#">
-            <li class="add-article">
-              <i class="ph ph-plus"></i>
-            </li>
-          </a>
+          <li><a href="#">Home</a></li>
+          <li><a href="./about-us.html">Sobre Nós</a></li>
+          <li class="add-article"><a href="#">
+            <i class="ph ph-plus"></i></a>
+          </li>
         </ul>
       </nav>
     </div>

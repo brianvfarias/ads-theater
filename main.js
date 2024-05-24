@@ -3,7 +3,7 @@ tinymce.init({
   language: 'pt_BR',
   license_key: 'gpl',
   selector: 'textarea#article-input',
-  width: 1000,
+  width: '95%',
   height: 300,
   // plugins: [
   //   'advlist',
