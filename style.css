@@ -75,13 +75,13 @@ h1 {
   }
 
   .navbar {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
     background: #333333;
-    clip-path: circle(100px at 80% -14%);
+    clip-path: circle(100px at 80% -25%);
     transition: 1s ease-out;
 
     flex-direction: column;
@@ -170,7 +170,7 @@ main {
   gap: 1rem;
   background-color: white;
   border-radius: 10px;
-  width: 50%;
+  width: 100%;
 }
 
 img {
@@ -179,21 +179,80 @@ img {
 
 .article div {
   padding: 0.5rem;
-  ;
 }
 
 .article p {
   margin-top: 1rem;
   font-size: 1rem;
+
 }
 
-dialog {
+.content {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.content-text {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.content-text::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 97%;
+  height: 100px;
+  background: linear-gradient(transparent, #ffffff)
+}
+
+.readbutton { 
+  border: none;
+  padding: 10px;
+  border-radius: 2px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.content.active .content-text {
+  height: auto;
+}
+
+.content.active .content-text::before {
+  visibility: hidden;
+}
+
+.editor {
   width: 100vw;
+  z-index: 1000;
   /* display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column; */
 }
+
+.fullarticle {
+  border: none;
+  border-radius: 0.5rem;
+  width: 90%;
+  position: relative;
+  padding: 20px;
+  margin: 10% auto;
+}
+
+.fullarticle button{
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bolder;
+    float: right;
+  }
+  
 
 textarea#article-input {
   width: 100vw;
