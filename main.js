@@ -1,4 +1,13 @@
-// console.log(tinymce);
+import { getArticlesFromDB } from './load.js';
+let articles;
+let articlesArea = document.querySelector('main');
+window.addEventListener('load', async function () {
+  articles = await getArticlesFromDB();
+  articles.forEach((a) => {
+    createArticleHTML(a);
+  });
+});
+
 tinymce.init({
   language: 'pt_BR',
   license_key: 'gpl',
@@ -53,6 +62,16 @@ function toggleModal() {
 
 function clearContent() {
   tinymce.activeEditor.setContent('');
+}
+
+function createArticleHTML(article) {
+  let temp = document.getElementsByTagName('template')[0];
+  let clone = temp.content.cloneNode(true);
+  let title = clone.querySelector('h2');
+  let text = clone.querySelector('p');
+  title.textContent = article.title;
+  text.textContent = article.article;
+  articlesArea.appendChild(clone);
 }
 
 addArticleBtn.addEventListener('click', () => {
