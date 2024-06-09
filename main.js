@@ -1,4 +1,5 @@
-// console.log(tinymce);
+const articlesArea = document.querySelector('main');
+
 tinymce.init({
   language: 'pt_BR',
   license_key: 'gpl',
@@ -53,6 +54,8 @@ function toggleModal() {
 
 function clearContent() {
   tinymce.activeEditor.setContent('');
+  let title = document.querySelector('input#article-title');
+  title.value = '';
 }
 
 addArticleBtn.addEventListener('click', () => {
@@ -60,13 +63,26 @@ addArticleBtn.addEventListener('click', () => {
   tinymce.setActive();
 });
 
+function createArticleHTML(article) {
+  let temp = document.getElementsByTagName('template')[0];
+  let clone = temp.content.cloneNode(true);
+  let title = clone.querySelector('h2');
+  let text = clone.querySelector('p');
+  title.textContent = article.title;
+  text.textContent = article.article;
+  articlesArea.appendChild(clone);
+}
+
 saveBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  let articleHTML = tinymce.activeEditor.getContent({ format: 'html' });
-  let newArticle = document.createElement('article');
-  newArticle.innerHTML = articleHTML;
+  let article = tinymce.activeEditor
+    .getContent({ format: 'html' })
+    .replace('<p>', '')
+    .replace('</p>', '');
+  let title = document.querySelector('input#article-title').value;
+  let newArticle = { title, article };
   toggleModal();
-  main.appendChild(newArticle);
+  createArticleHTML(newArticle);
   clearContent();
 });
 
