@@ -1,10 +1,21 @@
-import { getArticlesFromDB } from './load.js';
+import { deleteArticle, getArticlesFromDB, postArticle } from './api.js';
 let articles;
 let articlesArea = document.querySelector('main');
+let trashBtns;
 window.addEventListener('load', async function () {
   articles = await getArticlesFromDB();
   articles.forEach((a) => {
     createArticleHTML(a);
+  });
+  trashBtns = document.querySelectorAll('.trash-btn');
+  trashBtns.forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const id = btn.getAttribute('id');
+      console.log(id);
+      await deleteArticle(id);
+      location.reload(true);
+    });
   });
 });
 
@@ -52,8 +63,8 @@ tinymce.init({
 const addArticleBtn = document.querySelector('.add-article');
 const dialog = document.querySelector('dialog.editor');
 const saveBtn = document.querySelector('button[type=submit]');
-const textarea = document.querySelector('iframe');
-const main = document.querySelector('main');
+// const textarea = document.querySelector('iframe');
+console.log(trashBtns);
 const cancelBtn = document.querySelector('button#cancel');
 
 function toggleModal() {
@@ -62,6 +73,8 @@ function toggleModal() {
 
 function clearContent() {
   tinymce.activeEditor.setContent('');
+  let title = document.querySelector('input#article-title');
+  title.value = '';
 }
 
 function createArticleHTML(article) {
@@ -69,6 +82,8 @@ function createArticleHTML(article) {
   let clone = temp.content.cloneNode(true);
   let title = clone.querySelector('h2');
   let text = clone.querySelector('p');
+  let trash = clone.querySelector('button.trash-btn');
+  trash.setAttribute('id', article.id);
   title.textContent = article.title;
   text.textContent = article.article;
   articlesArea.appendChild(clone);
@@ -81,12 +96,14 @@ addArticleBtn.addEventListener('click', () => {
 
 saveBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  let articleHTML = tinymce.activeEditor.getContent({ format: 'html' });
-  let newArticle = document.createElement('article');
-  newArticle.innerHTML = articleHTML;
-  toggleModal();
-  main.appendChild(newArticle);
-  clearContent();
+  let title = document.querySelector('input#article-title').value;
+  let article = tinymce.activeEditor.getContent({ format: 'text' });
+  const newArticle = { title, article };
+  console.log(JSON.stringify(newArticle));
+  postArticle(JSON.stringify(newArticle));
+  location.reload(true);
+  // toggleModal();
+  // clearContent();
 });
 
 cancelBtn.addEventListener('click', () => {
