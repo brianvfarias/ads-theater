@@ -66,10 +66,11 @@ addArticleBtn.addEventListener('click', () => {
 function createArticleHTML(article) {
   let temp = document.getElementsByTagName('template')[0];
   let clone = temp.content.cloneNode(true);
-  let title = clone.querySelector('h2');
+  let title = clone.querySelector('h2.title');
   let text = clone.querySelector('p');
   title.textContent = article.title;
   text.textContent = article.article;
+
   articlesArea.appendChild(clone);
 }
 

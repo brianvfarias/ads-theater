@@ -42,14 +42,16 @@
       <button id="cancel">Cancelar</button>
     </div>
 
+
   </dialog>
 
-  <template>
+  <template id="article-template">
     <article class="article">
       <img src="" alt="Indisponível">
+      <button id="" class="trash-btn"><i class="ph ph-trash"></i></button>
       <div class="content">
-        <h2>ALL QUIET ON THE WESTERN FRONT</h2>
-        <p>
+        <h2 id="title">ALL QUIET ON THE WESTERN FRONT</h2>
+        <p id="article">
           Etiam maximus lorem nec sollicitudin egestas. Nulla aliquam posuere tempor. Curabitur imperdiet, sapien a
           sollicitudin vulputate, tellus dolor tristique lacus, non congue nibh nisi at sem. Nulla sagittis consectetur
           nisi, non varius turpis ullamcorper non. Proin sem metus, tempus ut efficitur at, placerat nec nisi. Donec
@@ -58,11 +60,38 @@
       </div>
       <button class="readbutton">Leia mais</button>
     </article>
+    <dialog class="fullarticle">
+
+      <h2 id="full-title">BACK TO BLACK</h2>
+      <p id="title">
+        Praesent odio tortor, venenatis id nibh nec, venenatis tempor eros. Integer quam dolor, dictum eu rutrum at,
+        aliquam eget nulla. Duis tincidunt sem sit amet varius aliquam. Quisque convallis condimentum tempor.
+        Pellentesque facilisis sodales lorem, eget feugiat sapien commodo id. Nunc iaculis in lacus non fringilla. Sed
+        lacinia pellentesque ligula, a elementum libero hendrerit ut. Aenean quam est, placerat at augue eu, maximus
+        sollicitudin orci. Donec ullamcorper aliquam leo pretium varius. Cras viverra efficitur ex rhoncus vestibulum.
+        Donec auctor vitae augue sed placerat. Vestibulum elementum eget felis ut pulvinar. Nulla rhoncus vehicula
+        felis, ornare feugiat erat finibus id. Donec venenatis urna non nisi faucibus, vitae ullamcorper dui
+        facilisis. Praesent scelerisque velit erat, quis lacinia turpis interdum a. Donec eleifend, lorem id maximus
+        congue, purus metus bibendum sem, ut ultrices est elit et leo.
+      </p>
+      <p>
+        Morbi elementum eget felis ut pulvinar. Nulla rhoncus vehicula felis, ornare feugiat erat finibus id. Donec
+        venenatis urna non nisi faucibus, vitae ullamcorper dui facilisis. Praesent scelerisque velit erat, quis
+        lacinia turpis interdum a. Donec eleifend, lorem id maximus congue, purus metus bibendum sem, ut ultrices est
+        elit et leo. Morbi ornare nunc a diam porttitor, ut mollis sapien auctor. Nulla at sodales felis. Mauris
+        ultrices tellus ac nisl venenatis iaculis. Nunc placerat dui at risus congue iaculis. Vestibulum tristique ex
+        in ex pulvinar mattis. Phasellus sit amet elit tincidunt, mattis arcu vitae, ornare sem. Quisque sagittis
+        malesuada enim, ac molestie magna porttitor a. Mauris in lectus ex. Nullam consequat tincidunt dui a ultrices.
+        Suspendisse id velit et enim rhoncus facilisis.
+      </p>
+      <button>Ler menos</button>
+    </dialog>
   </template>
 
   <main class="container flex">
     <article class="article">
       <img src="./assets/back-to-black-cover.png" alt="">
+      <button id="" class="trash-btn"><i class="ph ph-trash"></i></button>
       <div class="content">
         <div class="content-text">
           <h2>BACK TO BLACK</h2>
@@ -91,37 +120,11 @@
         <button class="readbutton">Leia mais</button>
       </div>
 
-      <dialog class="fullarticle">
-
-        <h2>BACK TO BLACK</h2>
-        <p>
-          Praesent odio tortor, venenatis id nibh nec, venenatis tempor eros. Integer quam dolor, dictum eu rutrum at,
-          aliquam eget nulla. Duis tincidunt sem sit amet varius aliquam. Quisque convallis condimentum tempor.
-          Pellentesque facilisis sodales lorem, eget feugiat sapien commodo id. Nunc iaculis in lacus non fringilla. Sed
-          lacinia pellentesque ligula, a elementum libero hendrerit ut. Aenean quam est, placerat at augue eu, maximus
-          sollicitudin orci. Donec ullamcorper aliquam leo pretium varius. Cras viverra efficitur ex rhoncus vestibulum.
-          Donec auctor vitae augue sed placerat. Vestibulum elementum eget felis ut pulvinar. Nulla rhoncus vehicula
-          felis, ornare feugiat erat finibus id. Donec venenatis urna non nisi faucibus, vitae ullamcorper dui
-          facilisis. Praesent scelerisque velit erat, quis lacinia turpis interdum a. Donec eleifend, lorem id maximus
-          congue, purus metus bibendum sem, ut ultrices est elit et leo.
-        </p>
-        <p>
-          Morbi elementum eget felis ut pulvinar. Nulla rhoncus vehicula felis, ornare feugiat erat finibus id. Donec
-          venenatis urna non nisi faucibus, vitae ullamcorper dui facilisis. Praesent scelerisque velit erat, quis
-          lacinia turpis interdum a. Donec eleifend, lorem id maximus congue, purus metus bibendum sem, ut ultrices est
-          elit et leo. Morbi ornare nunc a diam porttitor, ut mollis sapien auctor. Nulla at sodales felis. Mauris
-          ultrices tellus ac nisl venenatis iaculis. Nunc placerat dui at risus congue iaculis. Vestibulum tristique ex
-          in ex pulvinar mattis. Phasellus sit amet elit tincidunt, mattis arcu vitae, ornare sem. Quisque sagittis
-          malesuada enim, ac molestie magna porttitor a. Mauris in lectus ex. Nullam consequat tincidunt dui a ultrices.
-          Suspendisse id velit et enim rhoncus facilisis.
-        </p>
-        <button>Ler menos</button>
-      </dialog>
-
 
     </article>
     <article class="article">
       <img src="./assets/all-quiet-cover.png" alt="">
+      <button id="" class="trash-btn"><i class="ph ph-trash"></i></button>
       <div class="content">
         <h2>ALL QUIET ON THE WESTERN FRONT</h2>
         <p>
