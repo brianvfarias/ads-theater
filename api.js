@@ -24,3 +24,13 @@ export async function deleteArticle(id) {
   });
   console.log(id, deleteArticle);
 }
+
+export async function updateArticle(body) {
+  const update = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body,
+  });
+}

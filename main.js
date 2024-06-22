@@ -1,4 +1,10 @@
-import { deleteArticle, getArticlesFromDB, postArticle } from './api.js';
+import {
+  deleteArticle,
+  getArticlesFromDB,
+  postArticle,
+  // updateArticle,
+} from './api.js';
+import { readMore } from './readbutton.js';
 let articles;
 let articlesArea = document.querySelector('main');
 let trashBtns;
@@ -7,6 +13,17 @@ window.addEventListener('load', async function () {
   articles.forEach((a) => {
     createArticleHTML(a);
   });
+  // updateBtns = document.querySelectorAll('.update');
+  // console.log(updateBtns);
+  // updateBtns.forEach((btn) => {
+  //   btn.addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     console.log(btn.previousElementSibling);
+  //     // console.log(id);
+  //     // await updateArticle(id);
+  //     // location.reload(true);
+  //   });
+  // });
   trashBtns = document.querySelectorAll('.trash-btn');
   trashBtns.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
@@ -20,33 +37,11 @@ window.addEventListener('load', async function () {
 });
 
 tinymce.init({
-  language: 'pt_BR',
+  // language: 'pt_BR',
   license_key: 'gpl',
   selector: 'textarea#article-input',
   width: '95%',
   height: 300,
-  // plugins: [
-  //   'advlist',
-  //   'autolink',
-  //   'link',
-  //   'image',
-  //   'lists',
-  //   'charmap',
-  //   'preview',
-  //   'anchor',
-  //   'pagebreak',
-  //   'searchreplace',
-  //   'wordcount',
-  //   'visualblocks',
-  //   'code',
-  //   'fullscreen',
-  //   'insertdatetime',
-  //   'media',
-  //   'table',
-  //   'emoticons',
-  //   'template',
-  //   'codesample',
-  // ],
   toolbar:
     'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify |' +
     'bullist numlist outdent indent',
@@ -64,11 +59,16 @@ const addArticleBtn = document.querySelector('.add-article');
 const dialog = document.querySelector('dialog.editor');
 const saveBtn = document.querySelector('button[type=submit]');
 // const textarea = document.querySelector('iframe');
-console.log(trashBtns);
+// console.log(trashBtns);
 const cancelBtn = document.querySelector('button#cancel');
 
 function toggleModal() {
-  dialog.toggleAttribute('open');
+  console.log(dialog);
+  if (dialog.hasAttribute('open')) {
+    dialog.close();
+    return;
+  }
+  dialog.showModal();
 }
 
 function clearContent() {
@@ -80,12 +80,20 @@ function clearContent() {
 function createArticleHTML(article) {
   let temp = document.getElementsByTagName('template')[0];
   let clone = temp.content.cloneNode(true);
-  let title = clone.querySelector('h2');
-  let text = clone.querySelector('p');
+  let boxTitle = clone.querySelector('h2.box-title');
+  let boxText = clone.querySelector('p.box-article');
+  let fullTitle = clone.querySelector('dialog input.full-title');
+  let fullText = clone.querySelector('dialog textarea.full-article');
   let trash = clone.querySelector('button.trash-btn');
   trash.setAttribute('id', article.id);
-  title.textContent = article.title;
-  text.textContent = article.article;
+  let update = clone.querySelector('button.update-btn');
+  update.setAttribute('id', article.id);
+  boxTitle.textContent = article.title;
+  boxText.textContent = article.article;
+  fullTitle.value = article.title;
+  fullText.textContent = article.article;
+  readMore(clone);
+  console.log(clone);
   articlesArea.appendChild(clone);
 }
 
