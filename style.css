@@ -22,6 +22,7 @@ h1 {
   flex-direction: row;
   align-items: center;
   gap: 4rem;
+  flex-wrap: wrap;
 }
 
 .header {
@@ -177,6 +178,7 @@ main {
   background-color: white;
   border-radius: 10px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 img {
