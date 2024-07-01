@@ -1,4 +1,4 @@
-import { updateArticle } from './api.js';
+import { deleteArticle, updateArticle } from './api.js';
 
 function getUpdateInfo(button) {
   let id = button.getAttribute('id');
@@ -16,6 +16,8 @@ export function readMore(articleDisplay) {
   const fullarticle = articleDisplay.querySelector('.fullarticle');
   const buttonclose = articleDisplay.querySelector('.fullarticle .close');
   const buttonUpdate = articleDisplay.querySelector('.fullarticle .update-btn');
+  const buttonTrash = articleDisplay.querySelector('button.trash-btn');
+  console.log(buttonTrash);
   readbutton.onclick = function () {
     fullarticle.showModal();
   };
@@ -27,6 +29,14 @@ export function readMore(articleDisplay) {
     getUpdateInfo(buttonUpdate);
     fullarticle.close();
     setTimeout(() => console.log('delay'), 100);
+    location.reload(true);
+  });
+
+  buttonTrash.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = buttonTrash.getAttribute('id');
+    console.log(id);
+    deleteArticle(id);
     location.reload(true);
   });
 }

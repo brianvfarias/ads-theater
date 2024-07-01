@@ -3,7 +3,7 @@ let postArticle;
 let deleteArticle;
 let updateArticle;
 
-if (location.href.includes('5500')) {
+if (location.href.includes('github')) {
   const url = 'http://localhost:8080/article';
 
   getArticlesFromDB = async () => {
@@ -48,14 +48,7 @@ if (location.href.includes('5500')) {
   let localArticles = localStorage.getItem('articles');
 
   if (!localArticles) {
-    localArticles = [
-      {
-        id: 1,
-        title: 'BACK TO BLACK id',
-        article: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas mi eros, sit amet pulvinar velit mollis eget. Donec sollicitudin vitae est non pulvinar. Suspendisse sagittis eros mattis dui maximus, sed fermentum dolor tristique. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam nec mollis metus, non placerat eros. Phasellus non enim mattis, eleifend nulla eu, rhoncus massa. Vestibulum dignissim quam a sem vestibulum, sed volutpat urna sagittis. Curabitur consectetur facilisis mauris, eget dignissim elit elementum eget. Etiam viverra nunc eu est venenatis mattis id vitae diam. Mauris id hendrerit turpis, ac porta risus. Integer placerat efficitur nunc, eu cursus ante bibendum et. 
-     Phasellus feugiat mattis ipsum, a vulputate dolor semper et. Ut cursus quam non elit pharetra, at hendrerit odio tincidunt. Integer ornare, risus dapibus sagittis congue, ante ligula porta turpis, nec gravida nulla eros nec purus. Fusce venenatis nibh sem, et hendrerit quam luctus vel. Donec nec fringilla lectus, ac pulvinar augue. Praesent sed finibus sem, id consequat velit. Aenean pulvinar est pharetra enim interdum, eu eleifend metus pulvinar. Aliquam aliquet, eros in hendrerit volutpat, dolor orci fringilla lectus, eu lobortis diam ante et augue. Aenean aliquet tellus ac ex blandit faucibus. Donec auctor ipsum felis, non faucibus est interdum porta. Vivamus eu imperdiet odio. Suspendisse fringilla tristique bibendum. Fusce venenatis erat in arcu luctus, eu facilisis leo maximus.`,
-      },
-    ];
+    localArticles = [];
   } else {
     localArticles = JSON.parse(localArticles);
   }
@@ -67,7 +60,7 @@ if (location.href.includes('5500')) {
 
   postArticle = (article) => {
     let newArticle = JSON.parse(article);
-    const currentID = localArticles.length + 1;
+    const currentID = new Date().getTime();
     newArticle.id = currentID;
     localArticles.push(newArticle);
     console.log(localArticles);

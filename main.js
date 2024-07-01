@@ -7,11 +7,11 @@ import {
 import { readMore } from './readbutton.js';
 let articles;
 let articlesArea = document.querySelector('main');
-let trashBtns;
+// let trashBtns;
 window.addEventListener('load', async function () {
   articles = await getArticlesFromDB();
-  articles.forEach((a) => {
-    createArticleHTML(a);
+  articles.forEach(async (a) => {
+    await createArticleHTML(a);
   });
   // updateBtns = document.querySelectorAll('.update');
   // console.log(updateBtns);
@@ -24,16 +24,13 @@ window.addEventListener('load', async function () {
   //     // location.reload(true);
   //   });
   // });
-  trashBtns = document.querySelectorAll('.trash-btn');
-  trashBtns.forEach((btn) => {
-    btn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const id = btn.getAttribute('id');
-      console.log(id);
-      await deleteArticle(id);
-      location.reload(true);
-    });
-  });
+  // trashBtns = document.querySelectorAll('.trash-btn');
+  // console.log('botões', trashBtns);
+  // trashBtns.forEach((btn) => {
+  //   btn.addEventListener('click', async (e) => {
+
+  //   });
+  // });
 });
 
 tinymce.init({
@@ -77,7 +74,15 @@ function clearContent() {
   title.value = '';
 }
 
-function createArticleHTML(article) {
+async function getBlob(file) {
+  const blobFile = await fetch(file)
+    .then((res) => res.blob())
+    .then((data) => data);
+  console.log('blob in getBlob()', blobFile);
+  return blobFile;
+}
+
+async function createArticleHTML(article) {
   let temp = document.getElementsByTagName('template')[0];
   let clone = temp.content.cloneNode(true);
   let boxTitle = clone.querySelector('h2.box-title');
@@ -85,6 +90,15 @@ function createArticleHTML(article) {
   let fullTitle = clone.querySelector('dialog input.full-title');
   let fullText = clone.querySelector('dialog textarea.full-article');
   let trash = clone.querySelector('button.trash-btn');
+  if (location.href.includes('github')) {
+    let img = clone.querySelector('img');
+    let file = await getBlob(article.file);
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
   trash.setAttribute('id', article.id);
   let update = clone.querySelector('button.update-btn');
   update.setAttribute('id', article.id);
@@ -102,16 +116,28 @@ addArticleBtn.addEventListener('click', () => {
   tinymce.setActive();
 });
 
-saveBtn.addEventListener('click', (e) => {
+saveBtn.addEventListener('click', async (e) => {
   e.preventDefault();
   let title = document.querySelector('input#article-title').value;
   let article = tinymce.activeEditor.getContent({ format: 'text' });
-  const newArticle = { title, article };
-  console.log(JSON.stringify(newArticle));
-  postArticle(JSON.stringify(newArticle));
-  location.reload(true);
-  // toggleModal();
-  // clearContent();
+  if (location.href.includes('github')) {
+    let file = document.querySelector('input[type=file]').files[0];
+    console.log(file);
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      file = reader.result;
+      const newArticle = { title, article, file };
+      console.log(JSON.stringify(newArticle));
+      postArticle(JSON.stringify(newArticle));
+      location.reload(true);
+    };
+    reader.readAsDataURL(file);
+  } else {
+    const newArticle = { title, article };
+    console.log(JSON.stringify(newArticle));
+    postArticle(JSON.stringify(newArticle));
+    location.reload(true);
+  }
 });
 
 cancelBtn.addEventListener('click', () => {
