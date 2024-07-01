@@ -3,7 +3,7 @@ let postArticle;
 let deleteArticle;
 let updateArticle;
 
-if (location.href.includes('github')) {
+if (!location.href.includes('github')) {
   const url = 'http://localhost:8080/article';
 
   getArticlesFromDB = async () => {
