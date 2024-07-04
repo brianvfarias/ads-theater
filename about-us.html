@@ -6,7 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ADS Theater | Sobre Nós</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script defer src="./hamburger.js"></script>
+  <style>
+    .links ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      font-size: 1.25rem;
+    }
+
+    .links ul li a {
+      color: rgb(97, 103, 216);
+      text-decoration: none;
+    }
+
+    .links ul li a:hover,
+    .links ul li a:focus {
+      color: rgb(97, 103, 216);
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 10rem;
+      object-fit: contain;
+    }
+
+    section.us {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    div.content {
+      display: flex;
+      gap: 1rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,19 +61,55 @@
     </div>
   </header>
 
-  <main>
-    <article class="article" style="width: 100%;">
-      <div>
-        <h2>Sobre nós</h2>
-        <p>
-          Etiam maximus lorem nec sollicitudin egestas. Nulla aliquam posuere tempor. Curabitur imperdiet, sapien a
-          sollicitudin vulputate, tellus dolor tristique lacus, non congue nibh nisi at sem. Nulla sagittis consectetur
-          nisi, non varius turpis ullamcorper non. Proin sem metus, tempus ut efficitur at, placerat nec nisi. Donec
-          molestie purus at dolor tristique maximus.
+  <main class="container flex">
+    <section class="us">
+      <img src="./assets/perfil-jobs.jpeg" alt="not available">
+      <div class="content">
+
+        <h2 class="box-title">BRIAN VICTHOR FARIAS LOPES</h2>
+        <p class="box-article">
+          Estudante de Análise e Desenvolvimento de Sistemas na UNIASSELVI, Professor de Inglês, Desenvolvedor Web e Pai
+          de pet.
         </p>
+        <div class="links">
+          <ul>
+            <li>
+              <a target="_blank" href="https://www.linkedin.com/in/brian-farias/"><i class="ph ph-linkedin-logo"></i>
+                Linkedin</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://github.com/brianvfarias"><i class="ph ph-github-logo"></i> Github</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </article>
+    </section>
+    <section class="us">
+      <img src="./assets/eriv.png" alt="not available">
+      <div class="content">
+
+        <h2 class="box-title">ÉRIV JHOMIC ROCHA DE AZEVÊDO</h2>
+        <p class="box-article">
+          Praesent odio tortor, venenatis id nibh nec, venenatis tempor eros. Integer quam dolor, dictum eu rutrum
+          at,
+          aliquam eget nulla. Duis tincidunt sem sit amet varius aliquam.
+        </p>
+        <div class="links">
+          <ul>
+            <li>
+              <a target="_blank" href="https://www.linkedin.com/in/%C3%A9riv-jhomic-azev%C3%AAdo-429ba022a/"><i
+                  class="ph ph-linkedin-logo"></i> Linkedin</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://github.com/Jhomic"><i class="ph ph-github-logo"></i> Github</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
   </main>
+
 </body>
 
 </html>
